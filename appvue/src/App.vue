@@ -19,18 +19,12 @@ methods: {
     try {
       // Send a GET request to the Quotable API
       const response = await axios.get(
-        'https://quotes15.p.rapidapi.com/quotes/random/?language_code=en',
-        {
-          headers: {
-            'x-rapidapi-host': 'quotes15.p.rapidapi.com',
-            'x-rapidapi-key': '9b3bfa110bmsh258e4ff4f3dfdc9p1685fejsn590ea690620f'
-          }
-        }
+        'https://api.quotable.io/random',
       )
 // Update the quote with the response data
 
-this.quote = response.data.content
-this.author = response.data.originator.name
+this.quote = response.data?.content || 'No quote'
+this.author = response.data.originator.name || 'unknown'
 } catch (error) {
   console.error('Error fetching quote:', error)
 
